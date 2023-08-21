@@ -1,0 +1,24 @@
+.notfound {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.notfound-text {
+  color: var(--text-color);
+  transform: translateY(40vh);
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.notfound-found {
+  color: var(--text-color);
+  transform: translateY(45vh);
+  font-size: larger;
+  font-weight: 600;
+}
+
+.notfound-link {
+     
+}
