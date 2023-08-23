@@ -1,0 +1,63 @@
+.login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 60vh;
+  width: 50vw;
+  margin: 18vh auto;
+  max-width: 100%;
+  background-color: antiquewhite;
+  border-radius: 10px;
+}
+
+.login-container {
+  background-color: rgb(241, 178, 238);
+  padding: 3rem;
+  border-radius: 10px;
+}
+
+.login-header {
+  font-size: 2rem;
+  padding: 0.5rem;
+}
+
+.login-surheader {
+  font-size: 1rem;
+  padding: 0rem 0.5rem 1rem 0.5rem;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.login-dataform {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+}
+
+.login-datafrom-email {
+  padding: 0.3rem;
+  margin: 1rem 0;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+}
+
+.login-datafrom-pass {
+  padding: 0.3rem;
+  margin: 1rem 0;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+}
+
+.login-datafrom-btn {
+  padding: 0.3rem;
+  margin: 1rem 0;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background-color: rgb(50, 50, 245);
+  color: white;
+}
