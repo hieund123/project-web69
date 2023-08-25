@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React , {useState, useEffect} from "react";
+import {Link, useNavigate} from "react-router-dom"
 import "../styles/Login.css";
-import {Link} from 'react-router-dom'
+import {login} from '../redux/actions/authActions';
+import {useDispatch, useSelector} from 'react-redux'
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({email, password});
+  const initialState = {email: '', password: ''}
+ const navigate = useNavigate();
+ const {auth} = useSelector(state => state)
+  const [userData, setUserData] = useState(initialState);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    if(auth.token){
+      navigate('/')
+    }
+  })
+const {email, password} = userData;
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setUserData({...userData , [name]:value})
+  }
 
-  const handleSubmit = (e) => { 
-    e.preventDefault(); 
-    setUserData({...userData, email, password});
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+   
+    dispatch(login(userData));
   }
 
   return (
@@ -20,20 +35,22 @@ const Login = () => {
         <div className="login-data">
           <form className="login-dataform" onSubmit={handleSubmit}>
             <input
-              className="login-datafrom-email"
+              className="login-dataform-email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              onChange={handleChange}
               placeholder="Type your email"
             ></input>
             <input
-              className="login-datafrom-pass"
+              className="login-dataform-pass"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              onChange={handleChange}
               placeholder="Type your password"
             ></input>
-            <button className="login-datafrom-btn" type="submit">
+            <button className="login-dataform-btn" type="submit">
               Log In
             </button>
             <small>Do not have an account? Create <Link to="/register">Here</Link></small>

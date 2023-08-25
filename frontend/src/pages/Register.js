@@ -1,59 +1,100 @@
-import React, { useState } from "react";
-import '../styles/Register.css';
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { register } from "../redux/actions/authActions";
+import "../styles/Register.css";
 
 const Register = () => {
-  const [fullname, setFullname] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const initialState = {
+    username: "",
+    fullname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+  const [userData, setUserData] = useState(initialState);
+  const { username, fullname, email, password, confirmPassword } = userData;
+
+  const { auth, alert } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  useEffect(()=>{
+    if(auth.token) {
+      navigate('/')
+    }
+  }, [auth.token, navigate])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(register(userData));
+  };
   return (
     <div className="register">
       <h3 className="register-header">Social Network</h3>
       <div className="register-container">
         <h6 className="register-surheader">REGISTER</h6>
         <div className="register-data">
-          <form className="register-dataform">
+          <form className="register-dataform" onSubmit={handleSubmit}>
             <input
-              className="register-datafrom-email"
+              className="register-dataform-email"
               type="text"
               value={fullname}
-              onChange={(e) => setFullname(e.target.fullname)}
-              placeholder="Type your full name"
-            ></input>
+              name="fullname"
+              onChange={handleChange}
+              placeholder={
+                alert.fullname ? `${alert.fullname}` : "Enter your fullname"
+              }
+              style={{ background: `${alert.fullname ? "#fa8e96" : " "}` }}
+            />
+
             <input
-              className="register-datafrom-email"
+              className="register-dataform-email"
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.username)}
-              placeholder="Type your username"
+              name="username"
+              placeholder={
+                alert.username ? `${alert.username}` : "Enter your username"
+              }
+              value={username.toLowerCase().replace(/ /g, "")}
+              onChange={handleChange}
+              style={{ background: `${alert.fullname ? "#fa8e96" : " "}` }}
             ></input>
             <input
-              className="register-datafrom-email"
+              className="register-dataform-email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.email)}
-              placeholder="Type your email"
-            ></input>
+              name="email"
+              onChange={handleChange}
+              placeholder={alert.email ? `${alert.email}` : 'Enter your Email'}
+              style={{background: `${alert.fullname ? '#fa8e96' : ' '}`}}            />
             <input
-              className="register-datafrom-pass"
+              className="register-dataform-pass"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.password)}
-              placeholder="Type your password"
-            ></input>
+              name="password"
+              onChange={handleChange}
+              placeholder={alert.password ? `${alert.password}` : 'Enter your Password'}
+              style={{background: `${alert.fullname ? '#fa8e96' : ' '}`}}            />
             <input
-              className="register-datafrom-pass"
+              className="register-dataform-pass"
               type="password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.confirmPassword)}
-              placeholder="Confirm your password"
-            ></input>
-            <button className="register-datafrom-btn" type="submit">
+              name="confirmPassword"
+              onChange={handleChange}
+              placeholder={alert.confirmPassword ? `${alert.confirmPassword}` : 'Enter your password again'}
+              style={{background: `${alert.fullname ? '#fa8e96' : ' '}`}}            />
+            <button className="register-dataform-btn" type="submit">
               Sign up
             </button>
-            <small>Already have an account? Login <Link to="/register">Here</Link></small>
+            <small>
+              Already have an account? Login <Link to="/register">Here</Link>
+            </small>
           </form>
         </div>
       </div>

@@ -78,7 +78,7 @@ const authCtrl = {
       });
 
       res.json({
-        msg: "login successfully",
+        msg: "Login successfully",
         access_token,
         user: {
           ...user._doc,

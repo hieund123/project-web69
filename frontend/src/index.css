@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +16,12 @@ body {
 
 :root {
   --text-color: rgb(142, 142, 146);
+  --back-color: rgb(187, 154, 241);
+  --bottom-color: rgb(158, 105, 243);
+  --background-color: antiquewhite;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+
 }
 
 a {

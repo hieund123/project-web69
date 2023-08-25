@@ -21,7 +21,6 @@ app.use('/api', authRouter)
 
 const URL = process.env.MONGO_URI;
 
-// Sử dụng async/await để kết nối đến cơ sở dữ liệu
 (async () => {
   try {
     await mongoose.connect(URL, {
