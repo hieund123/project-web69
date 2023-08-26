@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRouter = require('./routers/authRouter')
+const userRouter = require('./routers/userRouter')
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cookieParser());
 // routes
 
 app.use('/api', authRouter)
+app.use('/api', userRouter);
 
 
 

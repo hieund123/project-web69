@@ -93,7 +93,7 @@ const Register = () => {
               Sign up
             </button>
             <small>
-              Already have an account? Login <Link to="/register">Here</Link>
+              Already have an account? Login <Link to="/login">Here</Link>
             </small>
           </form>
         </div>

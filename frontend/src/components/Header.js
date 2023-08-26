@@ -7,12 +7,12 @@ import MessageIcon from "@mui/icons-material/Message";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import FolderSharedIcon from "@mui/icons-material/FolderShared";
 import "../styles/Header.css";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataApi } from "../utils/fetchDataApi";
 import { logout } from "../redux/actions/authActions";
+import UserCard from "./UserCard";
 
 const Header = () => {
   const [search, setSearch] = useState("");
@@ -40,10 +40,10 @@ const Header = () => {
     }
   }, [search, auth.token, dispatch]);
 
-  const isActive = (pn) => {
-    console.log(pn);
-    if (pn === pathname) return true;
-  };
+  // const isActive = (pn) => {
+  //   console.log(pn);
+  //   if (pn === pathname) return true;
+  // };
 
   const handleClose = () => {
     setSearch("");
@@ -98,8 +98,12 @@ const Header = () => {
           )}
           {search &&
             users.length > 0 &&
-            users.map((user) => (
-              <FolderSharedIcon user={user} handleClose={handleClose} />
+            users.map((user, index) => (
+              <UserCard
+                key={index}
+                user={user}
+                handleClose={handleClose}
+              />
             ))}
         </div>
       </form>
