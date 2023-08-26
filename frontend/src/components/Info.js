@@ -22,7 +22,6 @@ const Info = (post) => {
 
   const [onEdit, SetOnEdit] = useState(false);
 
-  console.log(userData);
   return (
     <div className="profileinfo">
       {userData.length > 0 &&

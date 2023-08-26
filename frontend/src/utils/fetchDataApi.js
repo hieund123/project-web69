@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getDataApi = async (url, token) => {
-    const res = await axios.get(`api/${url}`, {
+    const res = await axios.get(`/api/${url}`, {
         headers: { Authorization: token }
     })
     return res;
@@ -9,7 +9,7 @@ export const getDataApi = async (url, token) => {
 
 export const postDataApi = async (url, post, token) => {
     
-    const res = await axios.post(`api/${url}`, post, {
+    const res = await axios.post(`/api/${url}`, post, {
         headers: { Authorization: token }       
     })
     
@@ -17,14 +17,14 @@ export const postDataApi = async (url, post, token) => {
 }
 
 export const patchDataApi = async (url, post, token) => {
-    const res = await axios.patch(`url/${url}`, post, {
+    const res = await axios.patch(`/url/${url}`, post, {
         headers: { Authorization: token }
     })
     return res;
 }
 
 export const deleteDataApi = async (url, post, token) => {
-    const res = await axios.delete(`url/${url}`, post, {
+    const res = await axios.delete(`/url/${url}`, post, {
         headers: { Authorization: token }
     })
     return res;

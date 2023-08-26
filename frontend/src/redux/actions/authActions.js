@@ -132,12 +132,22 @@ export const logout = () => async (dispatch) =>{
         
     } catch (error) {
         console.log(error)
-        dispatch({
-            type:"ALERT",
-            payload: {
-                error: error.res.data.msg
-            }
-        })
+
+        if (error && error.response && error.response.data && error.response.data.msg) {
+            dispatch({
+                type: "ALERT",
+                payload: {
+                    error: error.response.data.msg
+                }
+            });
+        } else {
+            dispatch({
+                type: "ALERT",
+                payload: {
+                    error: "An error occurred."
+                }
+            });
+        }
     }
    
 }
