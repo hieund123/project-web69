@@ -7,16 +7,12 @@ import { createNotify, removeNotify } from "./notifyActions";
 export const PROFILE_TYPES = {
   LOADING: "LOADING",
   GET_USER: "GET_USER",
-  FRIEND: "FRIEND",
-  UNFRIEND: "UNFRIEND",
-  GET_IDS: "GET_IDS",
-  USERPOSTS: "USERPOSTS",
 };
 
 export const getProfileUsers =
   ({ users, id, auth }) =>
   async (dispatch) => {
-    if (users.every((item) => item._id !== id)) {
+    if (users && users.every((item) => item._id !== id)) {
       try {
         dispatch({ type: PROFILE_TYPES.LOADING, payload: { loading: true } });
         const res = await getDataApi(`user/${id}`, auth.token);
@@ -30,33 +26,6 @@ export const getProfileUsers =
           payload: user.data.user,
         });
 
-        dispatch({ type: PROFILE_TYPES.LOADING, payload: { loading: false } });
-      } catch (err) {
-        dispatch({
-          type: "ALERT",
-          payload: {
-            error: err.response.data.msg,
-          },
-        });
-      }
-    }
-  };
-export const getProfileUsersPost =
-  ({ profil, id, auth }) =>
-  async (dispatch) => {
-    if (profil.every((item) => item._id !== id)) {
-      //  dispatch({type:PROFILE_TYPES.GET_IDS , payload: id })
-      try {
-        dispatch({ type: PROFILE_TYPES.LOADING, payload: { loading: true } });
-
-        const res1 = await getDataApi(`userposts/${id}`, auth.token);
-
-        const posts = res1;
-
-        dispatch({
-          type: PROFILE_TYPES.USERPOSTS,
-          payload: { ...posts.data, _id: id },
-        });
         dispatch({ type: PROFILE_TYPES.LOADING, payload: { loading: false } });
       } catch (err) {
         dispatch({

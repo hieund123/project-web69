@@ -15,13 +15,13 @@ const About = ( ) =>{
     const dispatch = useDispatch();
     useEffect(()=>{
             if(auth && auth.user && id === auth.user._id) {
-                setUserData([auth.user]) // it should be in array . as we declared it.
+                setUserData([auth.user]) 
             }else{
                 dispatch(getProfileUsers({users: profile.users, id , auth}))
                 const newData = profile.users.filter(user=>user._id === id)
-                setUserData(newData)   //this is already an array.
+                setUserData([newData])   
             }
-    },[id, auth.user, ,auth, profile.users, dispatch])
+    },[id, auth.user, auth, profile.users, dispatch])
 
 return (
         <div className="profileabout">

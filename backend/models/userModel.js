@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema(
     },
     avatar: {
       type: "string",
-      default: "",
+      default: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
     },
     story: {
       type: "string",

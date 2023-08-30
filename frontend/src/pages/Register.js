@@ -35,6 +35,7 @@ const Register = () => {
 
     dispatch(register(userData));
   };
+  
   return (
     <div className="register">
       <h3 className="register-header">Social Network</h3>
@@ -49,7 +50,7 @@ const Register = () => {
               name="fullname"
               onChange={handleChange}
               placeholder={
-                alert.fullname ? `${alert.fullname}` : "Enter your fullname"
+                alert.fullname ? `${alert.fullname}` : "Enter your full name"
               }
               style={{ background: `${alert.fullname ? "#fa8e96" : " "}` }}
             />

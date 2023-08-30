@@ -12,13 +12,21 @@ const Info = (post) => {
   const { id } = useParams();
   const { auth, profile } = useSelector((state) => state);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     if (auth && auth.user && id === auth.user._id) {
       setUserData([auth.user]);
     } else {
-        dispatch(getProfileUsers({users: profile.user, id, auth}))
+      const newData = profile.users.find(user => user._id === id);
+  
+      if (!newData) {
+        dispatch(getProfileUsers({ users: profile.users, id, auth }));
+      } else {
+        setUserData([newData]);
+      }
     }
-  }, [id, auth.user, auth]);
+  }, [id, auth.user, auth, dispatch, profile.users]);
+  
 
   const [onEdit, SetOnEdit] = useState(false);
 

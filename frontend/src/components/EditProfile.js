@@ -14,7 +14,7 @@ const EditProfile = ({user, SetOnEdit}) => {
 
 const initState = {website:'', fullname:'', story:'', phone:'', address:''}
     const [editData, setEditData] = useState(initState);
-    const  {website, fullname, story, phone, address } = editData;
+    const  { fullname, story, phone, address } = editData;
     const [avatar, setAvatar] = useState('')
     ///why you need here is i will be come back note to me.
 
@@ -64,26 +64,26 @@ const handleSubmit = (e) =>{
                         <label htmlFor="fullname">FullName</label>
                         <div className="editprofile-userdatafullname">
                         <input type="text" value={fullname} onChange={handleChangeInput}
-                        name="fullname" placeholder="Type your name" autocomplete="off"/>
+                        name="fullname" placeholder="Type your name" autoComplete="off"/>
                         <p className="editprofile-userdatapara">{fullname.length}/25</p>
                         </div>
                         <label htmlFor="address">Address</label>
                         <div className="editprofile-userdataaddress">
                         <input type="text" value={address} onChange={handleChangeInput}
-                        name="address" placeholder="Type your address" autocomplete="off"/>
+                        name="address" placeholder="Type your address" autoComplete="off"/>
                         
                         </div>
                         
                         <label htmlFor="phone">Phone</label>
                         <div className="editprofile-userdataphone">
                         <input type="text" value={phone} onChange={handleChangeInput}
-                        name="phone" placeholder="Type your phone number" autocomplete="off"/>
+                        name="phone" placeholder="Type your phone number" autoComplete="off"/>
                         
                         </div>
                         <label htmlFor="story">Story</label>
                         <div className="editprofile-userdatastory">
                         <input type="text" value={story} onChange={handleChangeInput}
-                        name="story" placeholder="Type your Bio " autocomplete="off"/>
+                        name="story" placeholder="Type your Bio " autoComplete="off"/>
                         <p className="editprofile-userdatapara">{story.length}/200</p>
                         </div>
                         <button type='submit' onClick={handleSubmit} className="editprofile-userdatabutton">Submit</button>
